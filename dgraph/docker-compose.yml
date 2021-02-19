@@ -24,6 +24,8 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
+    # Warning: this will whitelist 0.0.0.0/0 which is not appropriate for production
+    # Docs: https://dgraph.io/docs/deploy/dgraph-administration/#whitelisting-admin-operations
     command: dgraph alpha --my=alpha:7080 --lru_mb=2048 --zero=zero:5080 --whitelist 0.0.0.0/0
   ratel:
     image: dgraph/dgraph:latest
