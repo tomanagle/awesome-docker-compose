@@ -1,0 +1,18 @@
+version: "3"
+services:
+  mongo:
+    hostname: mongo
+    container_name: localmongo1
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+  mongosetup:
+    image: mongo:latest
+    depends_on:
+      - mongo
+    volumes: 
+      - ./mongo-initdb.d:/docker-entrypoint-initdb.d
+    restart: "no"
