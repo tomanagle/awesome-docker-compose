@@ -1,0 +1,22 @@
+organization:
+  name: default
+
+clusters:
+  - id: my-kafka-cluster
+    name: My Kafka Cluster
+    bootstrapServers: "0.0.0.0:9092"
+    properties: |
+      security.protocol=SASL_SSL
+      sasl.mechanism=PLAIN
+      sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='username' password='password';
+    schemaRegistry:
+      id: my-schema-registry
+      url: "http://0.0.0.0:8081"
+      security:
+        username: "username"
+        password: "password"
+
+auth:
+  demo-users:
+    - email: admin@conduktor.io
+      password: admin
